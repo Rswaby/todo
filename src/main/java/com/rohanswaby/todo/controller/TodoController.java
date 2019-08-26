@@ -57,7 +57,14 @@ public class TodoController {
 
     @RequestMapping(value = "/create-todo" ,method = RequestMethod.POST)
     public ResponseEntity<Todo> createTodo(@RequestBody Todo todo){
-        todoService.createTodo(todo.getUsername(),todo.getDetails(),todo.getTargetDate(),todo.getDone());
+        todoService.createTodo(
+                todo.getUsername(),
+                todo.getTitle(),
+                todo.getDetails(),
+                todo.getStartDate(),
+                todo.getEndDate(),
+                todo.getDone()
+        );
         return new ResponseEntity<>(todo, HttpStatus.ACCEPTED);
     }
 

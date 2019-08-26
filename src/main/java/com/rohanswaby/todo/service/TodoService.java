@@ -33,8 +33,13 @@ public class TodoService implements TodoIntService {
     }
 
     @Override
-    public void createTodo(String name, String description, Date targetDate, Boolean done){
-        Todo todo = new Todo(name,description,targetDate,done);
+    public void createTodo(String name,
+                           String title,
+                           String description,
+                           Date startDate,
+                           Date endDate,
+                           Boolean done){
+        Todo todo = new Todo(name,description, startDate,done);
         todoRepository.save(todo);
     }
 

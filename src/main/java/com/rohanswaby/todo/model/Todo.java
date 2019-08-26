@@ -25,15 +25,22 @@ public class Todo {
     @Size(min = 3)
     private String details;
 
-    private Date targetDate;
+    private Date startDate;
+
+    private Date EndDate;
+
+
+
+    @Size(max = 20)
+    private String Title;
 
     private Boolean done;
 
     public Todo(){}//default contructor
-    public Todo(String username, String details, Date targetDate, Boolean done){
+    public Todo(String username, String details, Date startDate, Boolean done){
         this.details = details;
         this.username= username;
-        this.targetDate = targetDate;
+        this.startDate = startDate;
         this.done = done;
     }
 
@@ -62,11 +69,26 @@ public class Todo {
         this.details = details;
     }
 
-    public Date getTargetDate() {
-        return targetDate;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setTargetDate(Date targetDate) {
-        this.targetDate = targetDate;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+    public Date getEndDate() {
+        return EndDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        EndDate = endDate;
+    }
+
+    public String getTitle() {
+        return Title;
+    }
+
+    public void setTitle(String title) {
+        Title = title;
     }
 }

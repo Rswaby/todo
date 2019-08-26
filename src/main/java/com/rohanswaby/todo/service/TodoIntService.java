@@ -12,7 +12,7 @@ public interface TodoIntService {
 
     Optional<Todo> getTodoById(long id);
 
-    void createTodo(String todo, String description, Date targetDate,Boolean done);
+    void createTodo(String name,String tile, String description, Date startDate,Date endDate,Boolean done);
 
     Todo updateTodo(Todo todo);
 
