@@ -42,20 +42,41 @@ public class TodoController {
         return new ResponseEntity<>(todos,HttpStatus.FOUND);
     }
 
-    @RequestMapping(value = "/delete-Todos", method = RequestMethod.DELETE)
-    public ResponseEntity<Optional<Todo>> deleteTodo(@RequestParam long id){
+    @RequestMapping(value = "/todos/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Optional<Todo>> deleteTodo(@PathVariable long id){
         Optional< Todo > todo = todoService.deleteTodo(id);
         return new ResponseEntity<>(todo, HttpStatus.ACCEPTED);
     }
 
-    @RequestMapping(value = "/update-Todos", method = RequestMethod.PUT)
-    public ResponseEntity<Todo> updataTodoById(@RequestBody Todo todo){
-        Todo newTodo = todoService.updateTodo(todo);
-        return new ResponseEntity<>(newTodo, HttpStatus.ACCEPTED);
+
+
+    @RequestMapping(value = "/todos/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Todo> updateTodoById(@PathVariable long id, @RequestBody Todo todo){
+        //find todo by id.
+
+        Optional<Todo> newTodo;
+        newTodo = todoService.getTodoById(id);
+        Todo todo1;
+        if(newTodo.isPresent()){
+            todo1 = newTodo.get();
+            todo1.setDetails(todo.getDetails());
+            todo1.setDone(todo.getDone());
+            todo1.setStartDate(todo.getStartDate());
+            todo1.setEndDate(todo.getEndDate());
+            todo1.setTitle(todo.getTitle());
+
+            todoService.updateTodo(todo1);
+            return new ResponseEntity<>(todo1, HttpStatus.ACCEPTED);
+        }
+        //newTodo.setDetails();
+        //= todoService.updateTodo(todo);
+
+        return new ResponseEntity<>(new Todo(), HttpStatus.NOT_FOUND);
+
     }
 
 
-    @RequestMapping(value = "/create-todo" ,method = RequestMethod.POST)
+    @RequestMapping(value = "/todos" ,method = RequestMethod.POST)
     public ResponseEntity<Todo> createTodo(@RequestBody Todo todo){
         todoService.createTodo(
                 todo.getUsername(),

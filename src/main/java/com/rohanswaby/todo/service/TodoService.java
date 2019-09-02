@@ -35,11 +35,11 @@ public class TodoService implements TodoIntService {
     @Override
     public void createTodo(String name,
                            String title,
-                           String description,
+                           String details,
                            Date startDate,
                            Date endDate,
                            Boolean done){
-        Todo todo = new Todo(name,description, startDate,done);
+        Todo todo = new Todo(name,details, startDate,done);
         todoRepository.save(todo);
     }
 
