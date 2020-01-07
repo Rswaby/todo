@@ -27,7 +27,7 @@ public class TodoServiceTest {
     TodoRepository todoRepository;
 
     @Test
-    public void getTodoByUserName(){
+    public void getTodoByUserNameTest(){
         List<Todo> todoList = new ArrayList<>();
 
         todoList.add(new Todo("rohan","details",new Date(),false));
@@ -46,6 +46,11 @@ public class TodoServiceTest {
         verify(todoRepository,times(1)).findByUsername("Rohan");
 
 
+    }
+
+    @Test
+    public  void getTodoByIdTest(){
+        
     }
 
 }
